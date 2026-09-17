@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROZERRR — Localhost Project Hub & Dev Dock</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <!-- Ambient Spotlight Glow -->
+  <div class="ambient-glow" id="ambientGlow"></div>
+  <div class="grid-overlay"></div>
+
+  <div class="app-container">
+    <!-- Top Bar Navigation -->
+    <header class="top-nav">
+      <div class="nav-left">
+        <div class="brand-badge">
+          <div class="brand-logo">
+            <i data-lucide="layers" class="icon-brand"></i>
+          </div>
+          <div class="brand-info">
+            <div class="brand-name">PROZERRR <span class="brand-version">HUB v1.0</span></div>
+            <div class="status-indicator">
+              <span class="status-dot"></span>
+              <span class="status-label" id="serverStatusLabel">LOCAL SYSTEM READY</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-center">
+        <!-- Spotlight Search Bar -->
+        <div class="search-wrapper" id="searchContainer">
+          <i data-lucide="search" class="search-icon"></i>
+          <input 
+            type="text" 
+            id="searchInput" 
+            placeholder="Cari project, stack, atau kategori... (Tekan Ctrl+K)" 
+            autocomplete="off" 
+            spellcheck="false"
+          >
+          <div class="search-kbd-hint">
+            <kbd>Ctrl</kbd><kbd>K</kbd>
+          </div>
+          <button id="clearSearchBtn" class="clear-btn" style="display:none;" title="Clear Search">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <!-- Settings & View Mode Toggle -->
+        <div class="view-toggle">
+          <button class="icon-btn active" id="viewGridBtn" title="Tampilan Grid Kartu">
+            <i data-lucide="layout-grid"></i>
+          </button>
+          <button class="icon-btn" id="viewListBtn" title="Tampilan List Ringkas">
+            <i data-lucide="list"></i>
+          </button>
+        </div>
+
+        <button class="ghost-btn" id="configHostBtn" title="Konfigurasi Localhost & Port">
+          <i data-lucide="settings"></i>
+          <span class="btn-text">Host Config</span>
+        </button>
+
+        <button class="ghost-btn" id="shortcutsBtn" title="Daftar Shortcut Keyboard">
+          <i data-lucide="command"></i>
+          <span class="btn-text">Shortcuts</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Filter Categories Bar -->
+      <section class="filters-bar">
+        <div class="category-pills" id="categoryPills">
+          <button class="pill active" data-category="all">Semua Project <span class="pill-count" id="countAll">0</span></button>
+          <button class="pill" data-category="suite">Prozerrr Suite <span class="pill-count" id="countSuite">8</span></button>
+          <button class="pill" data-category="Media">Media & Audio</button>
+          <button class="pill" data-category="Tools">Tools & Utilitas</button>
+          <button class="pill" data-category="Entertainment">Entertainment</button>
+          <button class="pill" data-category="System">System</button>
+          <button class="pill" data-category="Social">Social</button>
+          <button class="pill" data-category="Hardware/IoT">IoT</button>
+          <button class="pill" data-category="Showcase">Showcase</button>
+        </div>
+
+        <div class="filter-meta">
+          <span class="meta-text" id="resultMeta">Menampilkan 15 Project</span>
+          <div class="host-badge" id="activeHostBadge" title="Klik untuk ubah target host">
+            <i data-lucide="link"></i>
+            <span id="currentHostDisplay">http://localhost</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Suite Highlight Banner (Only when viewing All or Suite) -->
+      <section class="suite-highlight" id="suiteSection">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <i data-lucide="flame" class="section-icon"></i>
+            <h2>PROZERRR CORE SUITE</h2>
+            <span class="section-badge">8 APPS</span>
+          </div>
+          <span class="section-hint">Tekan angka <strong>1 — 8</strong> di keyboard untuk direct launch</span>
+        </div>
+        <div class="suite-grid" id="suiteGrid">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+
+      <!-- All Projects Grid / List -->
+      <section class="projects-section">
+        <div class="section-header" id="allSectionHeader">
+          <div class="section-title-wrap">
+            <i data-lucide="folder-git-2" class="section-icon"></i>
+            <h2 id="projectsGridTitle">SEMUA PROJECT LOKAL</h2>
+          </div>
+        </div>
+
+        <div class="projects-grid view-mode-grid" id="projectsContainer">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="empty-state" id="emptyState" style="display:none;">
+          <i data-lucide="search-x" class="empty-icon"></i>
+          <h3>Project Tidak Ditemukan</h3>
+          <p>Coba kata kunci lain atau pilih kategori "Semua Project".</p>
+          <button class="primary-btn" id="resetSearchBtn">Reset Pencarian</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Floating Raycast / macOS Dock Bar -->
+    <nav class="floating-dock-wrapper" id="dockWrapper">
+      <div class="floating-dock" id="floatingDock">
+        <!-- Suite Items dynamically injected into dock -->
+      </div>
+    </nav>
+  </div>
+
+  <!-- Quick Info / Detail Modal -->
+  <div class="modal-overlay" id="detailModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <div class="modal-icon-wrap" id="modalIconWrap">
+            <i data-lucide="box" id="modalIcon"></i>
+          </div>
+          <div>
+            <h3 id="modalTitle">Project Name</h3>
+            <p id="modalTagline">Project Tagline</p>
+          </div>
+        </div>
+        <button class="icon-close-btn" id="closeDetailModalBtn">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <p class="modal-desc" id="modalDesc"></p>
+
+        <div class="meta-group">
+          <span class="meta-label">Path Folder:</span>
+          <div class="code-copy-row">
+            <code id="modalPath">C:\laragon\www\...</code>
+            <button class="copy-btn" id="copyPathBtn" title="Salin Path">
+              <i data-lucide="copy"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="meta-group">
+          <span class="meta-label">Tech Stack:</span>
+          <div class="tags-row" id="modalTags"></div>
+        </div>
+
+        <div class="meta-group">
+          <span class="meta-label">URLs:</span>
+          <div class="urls-list">
+            <div class="url-item">
+              <span class="url-type">Localhost Path:</span>
+              <a href="#" id="modalLocalUrl" target="_blank" class="url-link"></a>
+            </div>
+            <div class="url-item">
+              <span class="url-type">Laragon VHost:</span>
+              <a href="#" id="modalVhostUrl" target="_blank" class="url-link"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="secondary-btn" id="modalVsCodeBtn">
+          <i data-lucide="external-link"></i> Buka di VS Code
+        </button>
+        <a href="#" id="modalLaunchBtn" target="_blank" class="primary-btn">
+          <i data-lucide="play"></i> Buka Project Sekarang
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Host Settings Modal -->
+  <div class="modal-overlay" id="settingsModal">
+    <div class="modal-card settings-card">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <i data-lucide="sliders" class="modal-header-icon"></i>
+          <div>
+            <h3>Konfigurasi Target Localhost</h3>
+            <p>Atur bagaimana link project dibuka di browser</p>
+          </div>
+        </div>
+        <button class="icon-close-btn" id="closeSettingsModalBtn">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <div class="modal-body settings-body">
+        <div class="form-group">
+          <label>Mode Target URL:</label>
+          <div class="radio-cards">
+            <label class="radio-card">
+              <input type="radio" name="urlMode" value="localhost" checked>
+              <div class="radio-content">
+                <strong>Localhost Subfolder (Default Laragon)</strong>
+                <span>Contoh: http://localhost/Prozerrr/MusTzy</span>
+              </div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="urlMode" value="vhost">
+              <div class="radio-content">
+                <strong>Laragon Virtual Host (.test)</strong>
+                <span>Contoh: http://mustzy.test</span>
+              </div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="urlMode" value="custom">
+              <div class="radio-content">
+                <strong>Custom Base URL / Port</strong>
+                <span>Contoh: http://127.0.0.1:8000</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group" id="customHostInputGroup" style="display:none;">
+          <label for="customHostInput">Custom Base URL:</label>
+          <input type="text" id="customHostInput" class="text-input" placeholder="http://127.0.0.1:8080">
+        </div>
+
+        <div class="form-group">
+          <label>Target Buka Tab:</label>
+          <div class="toggle-row">
+            <span>Buka link project di tab baru</span>
+            <input type="checkbox" id="openNewTabCheckbox" checked>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="secondary-btn" id="resetSettingsBtn">Reset Default</button>
+        <button class="primary-btn" id="saveSettingsBtn">Simpan Konfigurasi</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Keyboard Shortcuts Modal -->
+  <div class="modal-overlay" id="shortcutsModal">
+    <div class="modal-card shortcuts-card">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <i data-lucide="keyboard" class="modal-header-icon"></i>
+          <div>
+            <h3>Keyboard Shortcuts</h3>
+            <p>Navigasi cepat ala Raycast & Linear</p>
+          </div>
+        </div>
+        <button class="icon-close-btn" id="closeShortcutsModalBtn">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <div class="modal-body shortcuts-grid">
+        <div class="shortcut-row">
+          <div class="kbd-wrap"><kbd>Ctrl</kbd> + <kbd>K</kbd> / <kbd>/</kbd></div>
+          <span>Buka & fokus ke Spotlight Search</span>
+        </div>
+        <div class="shortcut-row">
+          <div class="kbd-wrap"><kbd>1</kbd> s/d <kbd>8</kbd></div>
+          <span>Langsung buka aplikasi Prozerrr Suite (1: DeskTzy, 4: MusTzy, dll)</span>
+        </div>
+        <div class="shortcut-row">
+          <div class="kbd-wrap"><kbd>Esc</kbd></div>
+          <span>Tutup modal atau bersihkan pencarian</span>
+        </div>
+        <div class="shortcut-row">
+          <div class="kbd-wrap"><kbd>?</kbd></div>
+          <span>Buka bantuan keyboard shortcuts</span>
+        </div>
+        <div class="shortcut-row">
+          <div class="kbd-wrap"><kbd>Tab</kbd> / <kbd>Shift+Tab</kbd></div>
+          <span>Navigasi antar kartu project</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

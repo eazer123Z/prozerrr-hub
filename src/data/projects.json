@@ -1,0 +1,313 @@
+{
+  "projects": [
+    {
+      "id": "desktzy",
+      "name": "DeskTzy",
+      "tagline": "Desktop Widget & Dynamic Overlay System",
+      "description": "Sistem widget desktop dan dynamic overlay dengan backend daemon Python dan kontrol web.",
+      "category": "System",
+      "tags": [
+        "PHP",
+        "Python",
+        "Desktop API",
+        "Tailwind"
+      ],
+      "path": "Prozerrr/DeskTzy",
+      "localUrl": "http://localhost/Prozerrr/DeskTzy",
+      "vhostUrl": "http://desktzy.test",
+      "icon": "Monitor",
+      "accentColor": "#38BDF8",
+      "isSuite": true,
+      "featured": true,
+      "status": "active"
+    },
+    {
+      "id": "downloadtzy",
+      "name": "DownloadTzy",
+      "tagline": "Universal Media & Video Downloader",
+      "description": "Web engine downloader video/audio serbaguna bertenaga yt-dlp dengan antarmuka cepat.",
+      "category": "Tools",
+      "tags": [
+        "PHP",
+        "Python",
+        "yt-dlp",
+        "Media API"
+      ],
+      "path": "Prozerrr/DownloadTzy",
+      "localUrl": "http://localhost/Prozerrr/DownloadTzy",
+      "vhostUrl": "http://downloadtzy.test",
+      "icon": "Download",
+      "accentColor": "#F59E0B",
+      "isSuite": true,
+      "featured": true,
+      "status": "active"
+    },
+    {
+      "id": "gametzy",
+      "name": "GameTzy",
+      "tagline": "Interactive Gaming Hub & Library",
+      "description": "Pusat game launcher dan manajemen koleksi game lokal dengan scratch and play.",
+      "category": "Entertainment",
+      "tags": [
+        "PHP",
+        "JSON DB",
+        "Gaming",
+        "Vanilla JS"
+      ],
+      "path": "Prozerrr/GameTzy",
+      "localUrl": "http://localhost/Prozerrr/GameTzy",
+      "vhostUrl": "http://gametzy.test",
+      "icon": "Gamepad2",
+      "accentColor": "#EF4444",
+      "isSuite": true,
+      "featured": true,
+      "status": "active"
+    },
+    {
+      "id": "mustzy",
+      "name": "MusTzy",
+      "tagline": "Modern Music Player & Audio Engine",
+      "description": "Aplikasi pemutar musik modern terintegrasi launcher desktop C# dan web audio.",
+      "category": "Media",
+      "tags": [
+        "PHP",
+        "C# WPF",
+        "Audio",
+        "Web Audio API"
+      ],
+      "path": "Prozerrr/MusTzy",
+      "localUrl": "http://localhost/Prozerrr/MusTzy",
+      "vhostUrl": "http://mustzy.test",
+      "icon": "Music",
+      "accentColor": "#8B5CF6",
+      "isSuite": true,
+      "featured": true,
+      "status": "active"
+    },
+    {
+      "id": "rectzy",
+      "name": "RecTzy",
+      "tagline": "Screen Recording & Capture Tool",
+      "description": "Perekam layar performa tinggi berbasis C# WPF, FFmpeg encoding, dan galeri web.",
+      "category": "Tools",
+      "tags": [
+        "C# WPF",
+        "FFmpeg",
+        "PHP",
+        "Video Capture"
+      ],
+      "path": "Prozerrr/RecTzy",
+      "localUrl": "http://localhost/Prozerrr/RecTzy",
+      "vhostUrl": "http://rectzy.test",
+      "icon": "Video",
+      "accentColor": "#EC4899",
+      "isSuite": true,
+      "featured": true,
+      "status": "active"
+    },
+    {
+      "id": "soundtzy",
+      "name": "SoundTzy",
+      "tagline": "Soundboard & Virtual Audio Routing",
+      "description": "Soundboard interaktif dan routing audio virtual dengan integrasi VB-Cable & Python.",
+      "category": "Media",
+      "tags": [
+        "PHP",
+        "Python",
+        "VB-Cable",
+        "Soundboard"
+      ],
+      "path": "Prozerrr/SoundTzy",
+      "localUrl": "http://localhost/Prozerrr/SoundTzy",
+      "vhostUrl": "http://soundtzy.test",
+      "icon": "Volume2",
+      "accentColor": "#10B981",
+      "isSuite": true,
+      "featured": true,
+      "status": "active"
+    },
+    {
+      "id": "streamtzy",
+      "name": "StreamTzy",
+      "tagline": "Cinema Streaming & Series Portal",
+      "description": "Portal streaming video film & serial dengan antarmuka sinematik dan dashboard admin.",
+      "category": "Entertainment",
+      "tags": [
+        "PHP",
+        "JSON DB",
+        "Streaming",
+        "Admin Portal"
+      ],
+      "path": "Prozerrr/StreamTzy",
+      "localUrl": "http://localhost/Prozerrr/StreamTzy",
+      "vhostUrl": "http://streamtzy.test",
+      "icon": "Tv",
+      "accentColor": "#6366F1",
+      "isSuite": true,
+      "featured": true,
+      "status": "active"
+    },
+    {
+      "id": "twetzy",
+      "name": "TweTzy",
+      "tagline": "Microblogging & Social Feed Engine",
+      "description": "Aplikasi sosial media microblogging dengan router kustom, feed responsif, dan API.",
+      "category": "Social",
+      "tags": [
+        "PHP",
+        "Social Feed",
+        "Routing",
+        "Design System"
+      ],
+      "path": "Prozerrr/TweTzy",
+      "localUrl": "http://localhost/Prozerrr/TweTzy",
+      "vhostUrl": "http://twetzy.test",
+      "icon": "MessageSquare",
+      "accentColor": "#1D9BF0",
+      "isSuite": true,
+      "featured": true,
+      "status": "active"
+    },
+    {
+      "id": "codetzy",
+      "name": "CodeTzy",
+      "tagline": "Developer Code Sandbox & Utilities",
+      "description": "Environment utilitas koding dan eksperimen sintaks cepat.",
+      "category": "Tools",
+      "tags": [
+        "Web",
+        "Editor",
+        "Code"
+      ],
+      "path": "CodeTzy",
+      "localUrl": "http://localhost/CodeTzy",
+      "vhostUrl": "http://codetzy.test",
+      "icon": "Code2",
+      "accentColor": "#06B6D4",
+      "isSuite": false,
+      "featured": false,
+      "status": "active"
+    },
+    {
+      "id": "docktzy",
+      "name": "DockTzy",
+      "tagline": "Custom Desktop Dock & App Switcher",
+      "description": "Eksperimen dock bar interaktif gaya macOS untuk desktop.",
+      "category": "System",
+      "tags": [
+        "UI/UX",
+        "Dock",
+        "JavaScript"
+      ],
+      "path": "DockTzy",
+      "localUrl": "http://localhost/DockTzy",
+      "vhostUrl": "http://docktzy.test",
+      "icon": "LayoutGrid",
+      "accentColor": "#F43F5E",
+      "isSuite": false,
+      "featured": false,
+      "status": "active"
+    },
+    {
+      "id": "iotzy",
+      "name": "IoTzy",
+      "tagline": "Smart IoT Hub & Device Telemetry",
+      "description": "Dashboard pemantauan sensor dan kontrol mikrokontroler IoT secara real-time.",
+      "category": "Hardware/IoT",
+      "tags": [
+        "IoT",
+        "PHP",
+        "Telemetry",
+        "Sensors"
+      ],
+      "path": "IoTzy",
+      "localUrl": "http://localhost/IoTzy",
+      "vhostUrl": "http://iotzy.test",
+      "icon": "Cpu",
+      "accentColor": "#14B8A6",
+      "isSuite": false,
+      "featured": false,
+      "status": "active"
+    },
+    {
+      "id": "landtzy",
+      "name": "LANDTZY",
+      "tagline": "High-Conversion Product Landing Page",
+      "description": "Landing page interaktif dengan tipografi tegas dan animasi halus.",
+      "category": "Showcase",
+      "tags": [
+        "Landing Page",
+        "HTML/CSS",
+        "Design"
+      ],
+      "path": "LANDTZY",
+      "localUrl": "http://localhost/LANDTZY",
+      "vhostUrl": "http://landtzy.test",
+      "icon": "Sparkles",
+      "accentColor": "#A855F7",
+      "isSuite": false,
+      "featured": false,
+      "status": "active"
+    },
+    {
+      "id": "porto1",
+      "name": "Porto1",
+      "tagline": "Personal Developer Portfolio",
+      "description": "Showcase portofolio karya, skill, dan histori proyek pengembangan web.",
+      "category": "Showcase",
+      "tags": [
+        "Portfolio",
+        "Frontend",
+        "Showcase"
+      ],
+      "path": "Porto1",
+      "localUrl": "http://localhost/Porto1",
+      "vhostUrl": "http://porto1.test",
+      "icon": "Briefcase",
+      "accentColor": "#3B82F6",
+      "isSuite": false,
+      "featured": false,
+      "status": "active"
+    },
+    {
+      "id": "skripshit",
+      "name": "SKRIPSHIT",
+      "tagline": "Academic Research & Thesis Workspace",
+      "description": "Workspace digital dan kompilasi data riset tugas akhir.",
+      "category": "Academic",
+      "tags": [
+        "Research",
+        "Docs",
+        "Academic"
+      ],
+      "path": "SKRIPSHIT",
+      "localUrl": "http://localhost/SKRIPSHIT",
+      "vhostUrl": "http://skripshit.test",
+      "icon": "GraduationCap",
+      "accentColor": "#EAB308",
+      "isSuite": false,
+      "featured": false,
+      "status": "active"
+    },
+    {
+      "id": "room3d",
+      "name": "3D Room",
+      "tagline": "Interactive Three.js 3D Virtual Room",
+      "description": "Eksplorasi grafis 3D interaktif pada browser berbasis WebGL/Three.js.",
+      "category": "Entertainment",
+      "tags": [
+        "Three.js",
+        "WebGL",
+        "3D Graphic"
+      ],
+      "path": "3D Room",
+      "localUrl": "http://localhost/3D Room",
+      "vhostUrl": "http://room3d.test",
+      "icon": "Box",
+      "accentColor": "#FB7185",
+      "isSuite": false,
+      "featured": false,
+      "status": "active"
+    }
+  ]
+}
