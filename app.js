@@ -268,12 +268,17 @@ class ProzerrrHub {
       openNewTab: localStorage.getItem('prozerrr_open_new_tab') !== 'false'
     };
 
+    // Environment detection
+    this.isCloud = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+    this.soundEnabled = localStorage.getItem('prozerrr_sound') !== 'false';
+
     this.initElements();
     this.initEvents();
     this.render();
     this.renderDock();
     this.applyViewMode();
     this.updateHostDisplay();
+    this.updateEnvironmentStatus();
   }
 
   initElements() {
@@ -451,6 +456,7 @@ class ProzerrrHub {
           const suiteApp = this.projects.find(p => p.number === num);
           if (suiteApp) {
             e.preventDefault();
+            this.playFeedbackSound(900, 0.05);
             this.launchProject(suiteApp);
           }
         }
@@ -465,6 +471,37 @@ class ProzerrrHub {
         glow.style.left = `${x}px`;
       }
     });
+  }
+
+  updateEnvironmentStatus() {
+    const label = document.getElementById('serverStatusLabel');
+    const dot = document.querySelector('.status-dot');
+    if (this.isCloud) {
+      if (label) label.textContent = 'CLOUD SHOWCASE ONLINE';
+      if (dot) dot.style.background = '#38bdf8';
+    } else {
+      if (label) label.textContent = 'LOCAL SYSTEM READY';
+      if (dot) dot.style.background = '#10b981';
+    }
+  }
+
+  playFeedbackSound(freq = 750, duration = 0.04) {
+    if (!this.soundEnabled) return;
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, ctx.currentTime);
+      gain.gain.setValueAtTime(0.03, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + duration);
+    } catch (e) {}
   }
 
   getProjectUrl(project) {
